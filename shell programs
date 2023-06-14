@@ -1,0 +1,160 @@
+ARMSTRONG
+*********
+#! /bin/bash
+echo "Enter a number: "
+read c
+x=$c
+sum=0
+r=0
+n=0
+while [ $x -gt 0 ]
+do
+r=`expr $x % 10`
+n=`expr $r \* $r \* $r`
+sum=`expr $sum + $n`
+x=`expr $x / 10`
+done
+if [ $sum -eq $c ]
+then
+echo "It is an Armstrong Number."
+else
+echo "It is not an Armstrong Number."
+fi
+
+
+***OR***
+
+echo -n "Enter the number:"
+read Number
+Length=${#Number}
+Sum=0
+OldNumber=$Number
+
+while [ $Number -ne  0 ]
+
+ do
+
+  Rem=$(($Number%10))
+
+  Number=$(($Number/10))
+
+  Power=$(echo “$Rem ^ $Length” | bc )
+
+  Sum=$(($Sum + $Power))
+
+done
+
+if [ $Sum -eq $OldNumber ]
+
+then
+
+  echo “$OldNumber is an Armstrong number”
+
+else
+
+  echo “$OldNumber is not an Armstrong number”
+
+fi
+
+*********
+
+PRIME
+*****
+#! /bin/bash
+low=1
+count=0
+while [ $low -eq 1 ]
+do
+echo "Enter the lower limit,greater than 1"
+read low
+done
+echo "Enter the upper limit"
+read upper
+for mun in `seq $low $upper`
+do
+ret=$(factor $mun | grep $mun | cut -d ":" -f 2 | cut -d " " -f 2)
+if [ "$ret" -eq "$mun" ] 
+then 
+echo "$mun" 
+((count++))
+fi 
+done
+echo -e "\n There are $count number of prime numbers"
+
+
+***********
+MATH OPERATIONS
+****************
+echo "Enter num1:"
+read a
+echo "Enter num2:"
+read b
+echo "Menu"
+echo "1)Addition 2)Subtraction 3)Multiplication 4)Division 5)Modulous"
+echo "Enter your choice:"
+read choice
+case $choice in "1") echo "Sum is: $((a+b))";;
+"2") echo "Difference is: $((a-b))";;
+"3") echo "Product is: $((a*b))";;
+"4") echo "Quotient is: $((a/b))";;
+"5") echo "Remainder is: $((a%b))";;
+*)
+esac
+
+********
+STATE&LANGUAGE
+*******
+#! /bin/bash
+echo "Select a state from the following:-"
+echo "1)Andhra Pradesh
+2)Assam
+3)Bihar
+4)Himachal Pradesh
+5)Karnataka
+6)Kerala
+7)Lakshadweep
+8)Tamilnadu"
+echo "Enter your choice:"
+read choice
+case "$choice" in
+"1") echo "Telugu"
+;;
+"2") echo "Assamese"
+;;
+"3" | "4") echo "Hindi"
+;;
+"5") echo "Kannada"
+;;
+"6" | "7") echo "Malayalam"
+;;
+"8") echo "Tamil"
+esac
+
+********
+GRADE OF STUDENT
+************
+#! /bin/bash
+echo "Enter the name of student:"
+read name
+echo "Enter the mark of subject1:"
+read m1
+echo "Enter the mark of subject2:"
+read m2
+echo "Enter the mark of subject3:"
+read m3
+sum=`expr $m1 + $m2 + $m3`
+avg=`expr $sum / 3`
+echo "$avg"
+if [$avg>=90]; then
+echo "$name $avg S"
+elif [$avg>=80||$avg<90]; then
+echo "$name $avg A"
+elif [$avg>=60||$avg<80]; then
+echo "$name $avg B"
+elif [$avg>=40||$avg<60]; then
+echo "$name $avg P"
+elif [$avg<40]; then
+echo "$name $avg F"
+else
+echo "Wrong input"
+fi
